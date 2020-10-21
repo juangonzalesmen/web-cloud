@@ -36,28 +36,28 @@ def create_app(script_info=None):
     return app
 
 
-#import os
-#from flask import Flask, jsonify
-#from flask_restful import Resource, Api
-#from flask_sqlalchemy import SQLAlchemy
+# import os
+# from flask import Flask, jsonify
+# from flask_restful import Resource, Api
+# from flask_sqlalchemy import SQLAlchemy
 
 # instantiate the app
-#app = Flask(__name__)
+# app = Flask(__name__)
 
-#api = Api(app)
+# api = Api(app)
 
-#@app.route('/users/ping', methods=['GET'])
+# @app.route('/users/ping', methods=['GET'])
 
 # establelciendo configuracion
-#app.config.from_object('project.config.DevelopmentConfig')
-#app_settings = os.getenv('APP_SETTINGS')
-#app.config.from_object(app_settings)
+# app.config.from_object('project.config.DevelopmentConfig')
+# app_settings = os.getenv('APP_SETTINGS')
+# app.config.from_object(app_settings)
 
 # instanciado la db
-#db = SQLAlchemy(app)  # nuevo
+# db = SQLAlchemy(app)  # nuevo
 
 # modelo
-#class User(db.Model):  # nuevo
+# class User(db.Model):  # nuevo
 #    __tablename__ = "users"
 #    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 #    username = db.Column(db.String(128), nullable=False)
@@ -69,7 +69,7 @@ def create_app(script_info=None):
 #        self.email = email
 
 
-#class UsersPing(Resource):
+# class UsersPing(Resource):
 #    def get(self):
 #        return {
 #        'status': 'success',
@@ -77,7 +77,7 @@ def create_app(script_info=None):
 #    }
 
 
-#import sys
-#print(app.config, file=sys.stderr)
+# import sys
+# print(app.config, file=sys.stderr)
 
-#api.add_resource(UsersPing, '/users/ping')
+# api.add_resource(UsersPing, '/users/ping')

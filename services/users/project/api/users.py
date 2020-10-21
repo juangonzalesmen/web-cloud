@@ -6,8 +6,8 @@ from flask_restful import Resource, Api
 from project import db
 from project.api.models import User
 from sqlalchemy import exc
-#from flask import Blueprint
-#from flask_restful import Resource, Api
+# from flask import Blueprint
+# from flask_restful import Resource, Api
 
 users_blueprint = Blueprint('users', __name__, template_folder='./templates')
 api = Api(users_blueprint)
@@ -16,9 +16,9 @@ api = Api(users_blueprint)
 class UsersPing(Resource):
     def get(self):
         return {
-        'status': 'success',
-        'message': 'pong!'
-    }
+            'status': 'success',
+            'message': 'pong!'
+            }
 
 
 class UsersList(Resource):
@@ -41,7 +41,7 @@ class UsersList(Resource):
                 response_object['message'] = f'{email} was added!'
                 return response_object, 201
             else:
-                response_object['message'] = 'Sorry. That email already exists.'
+                response_object['message'] = 'Sorry.ThatEmailAlreadyExists.'
                 return response_object, 400
         except exc.IntegrityError:
             db.session.rollback()
@@ -56,6 +56,7 @@ class UsersList(Resource):
                 }
             }
         return response_object, 200
+
 
 class Users(Resource):
     def get(self, user_id):
@@ -82,10 +83,12 @@ class Users(Resource):
         except ValueError:
             return response_object, 404
 
-#@users_blueprint.route('/', methods=['GET'])
-#def index():
+
+# @users_blueprint.route('/', methods=['GET'])
+# def index():
 #    users = User.query.all()
 #    return render_template('index.html', users=users)
+
 
 @users_blueprint.route('/', methods=['GET', 'POST'])
 def index():
@@ -96,7 +99,7 @@ def index():
         db.session.commit()
     users = User.query.all()
     return render_template('index.html', users=users)
-#class Users(Resource):
+# class Users(Resource):
 #    def get(self, user_id):
 #        """Obtenga detalles de un solo usuario"""
 #        user = User.query.filter_by(id=user_id).first()
@@ -111,7 +114,7 @@ def index():
 #        }
 #        return response_object, 200
 
-#class UsersList(Resource):
+# class UsersList(Resource):
 #    def post(self):
 #        post_data = request.get_json()
 #        username = post_data.get('username')
@@ -123,6 +126,7 @@ def index():
 #            'message': f'{email} fue agregado!'
 #        }
 #        return response_object, 201
+
 
 api.add_resource(Users, '/users/<user_id>')
 api.add_resource(UsersList, '/users')
