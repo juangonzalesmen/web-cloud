@@ -161,3 +161,31 @@ def test_all_users(self):
 
 if __name__ == '__main__':
     unittest.main()
+
+def test_main_with_users(self):
+    """Asegurando que la ruta principal se comporte correctamente cuando se
+        hayan agregado usuarios a la base de datos."""
+
+    add_user('juangonzales', 'juangonzales@upeu.edu.pe')
+    add_user('juanabel', 'juanabel@gmail.com')
+    with self.client:
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'All Users', response.data)
+        self.assertNotIn(b'<p>No users!</p>', response.data)
+        self.assertIn(b'juangonzales', response.data)
+        self.assertIn(b'juanabel', response.data)
+
+
+def test_main_add_user(self):
+    """
+   Asegurando que se pueda agregar un nuevo usuario a la base de datos mediante
+   una solicitud POST.
+    """
+    with self.client:
+        response = self.client.post(
+            '/',
+            data=dict(username='danmichael', email='danmichael@test.com'),
+            follow_redirects=True
+        )
+        self.assertEqual(response.status_code, 200)

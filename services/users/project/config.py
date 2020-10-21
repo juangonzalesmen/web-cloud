@@ -25,5 +25,4 @@ class ProductionConfig(BaseConfig):
     """Configuración de producción"""
    
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-
     # services/users/project/config.py
