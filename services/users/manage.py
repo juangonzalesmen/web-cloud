@@ -41,11 +41,19 @@ def test():
         return 0
     sys.exit(result)
 
-@cli.command('seed_db')
+@cli.command("seed_db")
 def seed_db():
-    """Siembra la base de datos."""
-    db.session.add(User(username='juanabel', email="juanabel@gmail.com"))
-    db.session.add(User(username='juangonzales', email="juangonzales@upeu.edu.pe"))
+    """Sembrar la base de datos"""
+    db.session.add(User(               # nuevo
+        username='juan.gonzales',
+        email='juan.gonzales@upeu.edu.pe',
+        password='greaterthaneight')
+    )
+    db.session.add(User(               # nuevo
+        username='juangon',
+        email='juangon@gmail.com',
+        password='greaterthaneight')
+    )
     db.session.commit()
 
 @cli.command()

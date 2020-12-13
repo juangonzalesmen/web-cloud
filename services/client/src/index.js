@@ -1,53 +1,19 @@
 import React, { Component } from 'react';  // nuevo
 import ReactDOM from 'react-dom';
-import axios from 'axios';
-import UsersList from './components/UsersList';
-import AddUser from './components/AddUser';
+import { BrowserRouter as Router } from 'react-router-dom';  // nuevo
+// import App from './App.jsx';
+// import UsersList from './components/UsersList';
+// import AddUser from './components/AddUser';
 
 
-// nuevo
-class App extends Component {
+import App from './App.jsx';
+
+ReactDOM.render((
   // new
-  constructor() {
-    super();
-    // nuevo
-    this.state = {
-      users: []
-    };
-  };
-  // new
-  componentDidMount() {
-    this.getUsers();
-  };
-  getUsers() {
-    axios.get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)  // nuevo
-    .then((res) => { this.setState({ users: res.data.data.users }); })
-    .catch((err) => { console.log(err); });
-  };
-  render() {
-    return (
-      <section className="section">
-        <div className="container">
-          <div className="columns">
-            <div className="column is-half">  {/* new */}
-              <br/>
-              <h1 className="title is-1">All Users</h1>
-              <hr/><br/>
-              <AddUser/>  {/* nuevo */}
-              <br/><br/>  {/* nuevo */}
-              <UsersList users={this.state.users}/>
-            </div>
-          </div>
-        </div>
-      </section>
-    )
-  }
-};
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+  <Router>
+    <App />
+  </Router>
+), document.getElementById('root'))
 
 
 

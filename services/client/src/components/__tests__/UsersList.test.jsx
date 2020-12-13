@@ -12,9 +12,9 @@ const users = [
   },
   {
     'active': true,
-    'email': 'juan.gonzales@upeu.edu.pe',
+    'email': 'juangonzales@upeu.edu.pe',
     'id': 2,
-    'username': 'juan.gonzales'
+    'username': 'juangonzales'
   }
 ];
 
