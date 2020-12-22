@@ -7,7 +7,7 @@ from flask import Flask  # nuevo
 from flask_sqlalchemy import SQLAlchemy
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_cors import CORS  # nuevo
-from flask_migrate import Migrate # nuevo
+from flask_migrate import Migrate  # nuevo
 from flask_bcrypt import Bcrypt  # nuevo
 
 # instantiate the db
@@ -40,7 +40,6 @@ def create_app(script_info=None):
     app.register_blueprint(users_blueprint)
     from project.api.auth import auth_blueprint  # nuevo
     app.register_blueprint(auth_blueprint)       # nuevo
-
 
     # contexto shell para flask cli
     @app.shell_context_processor

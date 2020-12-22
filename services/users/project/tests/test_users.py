@@ -43,7 +43,6 @@ class TestUserService(BaseTestCase):
         self.assertIn('juangonzales@upeu.edu.pe was added!', data['message'])
         self.assertIn('success', data['status'])
 
-
     def test_add_user_invalid_json_keys_no_password(self):
         """
         asegúrese de que se produzca un error si
@@ -57,15 +56,14 @@ class TestUserService(BaseTestCase):
                     email='freddy@reallynotreal.com')),
                 content_type='application/json',
                 )
-    
         data = json.loads(response.data.decode())
         self.assertEqual(response.status_code, 400)
         self.assertIn('Invalid payload.', data['message'])
         self.assertIn('fail', data['status'])
 
-
     def test_add_user_invalid_json(self):
-        """Asegúrese de que se produzca un error si el objeto JSON está vacío."""
+        """Asegúrese de que se produzca un error"""
+        """si el objeto JSON está vacío."""
         with self.client:
             response = self.client.post(
                 '/users',
@@ -76,7 +74,6 @@ class TestUserService(BaseTestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn('Invalid payload.', data['message'])
         self.assertIn('fail', data['status'])
-
 
     def test_add_user_invalid_json_keys(self):
         """Asegúrese de que se produzca"""
@@ -118,9 +115,9 @@ def test_add_user_duplicate_email(self):
     self.assertIn('Sorry. That email already exists.', data['message'])
     self.assertIn('fail.', data['status'])
 
-
     def test_single_user(self):
         """Ensure get single user behaves correctly."""
+
         user = add_user('justatest', 'test@test.com', 'greaterthaneight')
         with self.client:
             response = self.client.get(f'/users/{user.id}')
@@ -129,7 +126,6 @@ def test_add_user_duplicate_email(self):
         self.assertIn('justatest', data['data']['username'])
         self.assertIn('test@test.com', data['data']['email'])
         self.assertIn('success', data['status'])
-
 
     def test_single_user_no_id(self):
         """Asegúrese de que se produzca un error si no se proporciona un id."""
@@ -140,7 +136,6 @@ def test_add_user_duplicate_email(self):
         self.assertIn('User does not exist', data['message'])
         self.assertIn('fail', data['status'])
 
-
     def test_single_user_incorrect_id(self):
         """Asegúrese de que se produzca un error si el id no existe."""
         with self.client:
@@ -150,10 +145,10 @@ def test_add_user_duplicate_email(self):
         self.assertIn('User does not exist', data['message'])
         self.assertIn('fail', data['status'])
 
-
     def test_all_users(self):
         """Asegúrese de que todos los usuarios se comporten correctamente."""
-        add_user('juangonzales', 'juangonzales@upeu.edu.pe', 'greaterthaneight')
+        add_user('juangonzales', 'juangonzales@upeu.edu.pe',
+                 'greaterthaneight')
         add_user('juanabel', 'juanabel@gmail.com', 'greaterthaneight')
         with self.client:
             response = self.client.get('/users')
@@ -172,11 +167,12 @@ def test_add_user_duplicate_email(self):
 if __name__ == '__main__':
     unittest.main()
 
-
     def test_main_with_users(self):
         """Asegurando que la ruta principal."""
-        add_user('juangonzales', 'juangonzales@upeu.edu.pe', 'greaterthaneight')
-        add_user('juanabel', 'juanabel@gmail.com', 'greaterthaneight')
+        add_user('juangonzales', 'juangonzales@upeu.edu.pe',
+                 'greaterthaneight')
+        add_user('juanabel', 'juanabel@gmail.com',
+                 'greaterthaneight')
         with self.client:
             response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
@@ -184,7 +180,6 @@ if __name__ == '__main__':
         self.assertNotIn(b'<p>No users!</p>', response.data)
         self.assertIn(b'juangonzales', response.data)
         self.assertIn(b'juanabel', response.data)
-
 
     def test_main_add_user(self):
         """Asegurando que se pueda agregar."""

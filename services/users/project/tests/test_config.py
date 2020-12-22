@@ -67,5 +67,6 @@ class TestProductionConfig(TestCase):
         self.assertTrue(app.config['TOKEN_EXPIRATION_DAYS'] == 30)    # nuevo
         self.assertTrue(app.config['TOKEN_EXPIRATION_SECONDS'] == 0)  # nuevo
 
+
 if __name__ == '__main__':
     unittest.main()
